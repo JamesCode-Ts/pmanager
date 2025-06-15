@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,10 +17,9 @@ import java.util.Objects;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false, length = 36)
     private String id;
-
 
     @Column(name = "name", nullable = false, length = 36)
     private String name;
@@ -34,7 +34,7 @@ public class Project {
     private LocalDate finalDate;
 
     @Column(name = "status", nullable = false)
-    @Enumerated(STRING)
+    @Enumerated(EnumType.STRING)
     private ProjectStatus status;
 
 
