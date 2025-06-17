@@ -3,7 +3,7 @@ package com.java360.pmanager.domain.entity;
 import com.java360.pmanager.domain.model.ProjectStatus;
 import jakarta.persistence.*;
 import lombok.*;
-
+import lombok.Builder;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,6 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "project")
 public class Project {
 
