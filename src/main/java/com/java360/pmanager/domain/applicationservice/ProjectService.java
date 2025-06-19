@@ -1,7 +1,7 @@
 package com.java360.pmanager.domain.applicationservice;
 
 import com.java360.pmanager.domain.entity.Project;
-import com.java360.pmanager.domain.infrastructure.dto.SaveProjectData;
+import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
 import com.java360.pmanager.domain.model.ProjectStatus;
 import com.java360.pmanager.domain.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -15,7 +15,7 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
 
     @Transactional
-    public Project createProject(SaveProjectData saveProjectData) {
+    public Project createProject(SaveProjectDataDTO saveProjectData) {
 
         Project project = Project
                 .builder()
