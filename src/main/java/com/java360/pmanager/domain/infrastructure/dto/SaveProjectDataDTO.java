@@ -12,18 +12,18 @@ import java.time.LocalDate;
 @Data
 public class SaveProjectDataDTO {
 
-    @NotNull
-    @Size(min = 1, max = 80)
+    @NotNull(message = "Name cannot be empty")
+    @Size(min = 1, max = 80, message = "Invalid name")
     private final String name;
 
-    @NotNull
-    @Size(min = 1, max = 150)
+    @NotNull(message = "Description cannot be empty")
+    @Size(min = 1, max = 150 ,message = "Invalid description")
     private final String description;
 
-    @NotNull
+    @NotNull(message = "Initial date cannot be empty")
     private final LocalDate initialDate;
 
-    @NotNull
+    @NotNull(message = "Final date cannot be empty")
     private final LocalDate finalDate;
 
     private final String status;
