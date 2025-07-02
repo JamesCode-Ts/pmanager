@@ -32,6 +32,7 @@ public class SaveProjectDataDTO {
     @AssertTrue(message = "Dates are not consistent")
     @SuppressWarnings("unused")
     private boolean isInitialDateBeforeFinalDate(){
+
         return initialDate.isBefore(finalDate);
     }
     // Returns false if initialDate is not before finalDate
