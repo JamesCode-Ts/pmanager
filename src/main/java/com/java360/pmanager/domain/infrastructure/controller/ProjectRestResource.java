@@ -4,6 +4,9 @@ import com.java360.pmanager.domain.applicationservice.ProjectService;
 import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.infrastructure.dto.ProjectDTO;
 import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
+import com.java360.pmanager.domain.infrastructure.exception.InvalidProjectStatusException;
+import com.java360.pmanager.domain.model.ProjectStatus;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +48,7 @@ public class ProjectRestResource {
         projectService.deleteProject(projectId);
         return ResponseEntity.noContent().build();
     }
+
+
 
 }
