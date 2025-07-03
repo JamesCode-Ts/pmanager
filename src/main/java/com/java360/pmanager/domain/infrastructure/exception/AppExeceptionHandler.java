@@ -1,4 +1,4 @@
-package com.java360.pmanager.domain.infrastructure.dto.exception;
+package com.java360.pmanager.domain.infrastructure.exception;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;

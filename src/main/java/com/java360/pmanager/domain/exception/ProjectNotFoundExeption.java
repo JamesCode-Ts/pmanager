@@ -1,6 +1,6 @@
 package com.java360.pmanager.domain.exception;
 
-import com.java360.pmanager.domain.infrastructure.dto.exception.RequestException;
+import com.java360.pmanager.domain.infrastructure.exception.RequestException;
 
 public class ProjectNotFoundExeption  extends RequestException {
 
