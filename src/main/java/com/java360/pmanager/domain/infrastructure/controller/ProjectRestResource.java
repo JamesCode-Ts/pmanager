@@ -38,4 +38,12 @@ public class ProjectRestResource {
 
         return ResponseEntity.ok(ProjectDTO.create(project));
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProject(@PathVariable("id") String projectId){
+        projectService.deleteProject(projectId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

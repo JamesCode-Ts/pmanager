@@ -42,5 +42,9 @@ public class ProjectService {
 
     }
 
-
+    @Transactional
+    public void deleteProject(String projectId){
+        Project project = loadProject(projectId);
+        projectRepository.delete(project);
+    }
 }
