@@ -29,14 +29,14 @@ public class ProjectRestResource {
     public ResponseEntity<ProjectDTO> creatProject(@RequestBody @Valid SaveProjectDataDTO saveProjectData) {
         Project project = projectService.createProject(saveProjectData);
 
-       return ResponseEntity
-               .created(URI.create(PATH_PROJECTS + project.getId()))
-               .body(ProjectDTO.create(project));
+        return ResponseEntity
+                .created(URI.create(PATH_PROJECTS + project.getId()))
+                .body(ProjectDTO.create(project));
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProjectDTO>  loadProject(@PathVariable("id") String projectId){
+    public ResponseEntity<ProjectDTO> loadProject(@PathVariable("id") String projectId) {
         Project project = projectService.loadProject(projectId);
 
         return ResponseEntity.ok(ProjectDTO.create(project));
@@ -44,11 +44,21 @@ public class ProjectRestResource {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProject(@PathVariable("id") String projectId){
+    public ResponseEntity<Void> deleteProject(@PathVariable("id") String projectId) {
         projectService.deleteProject(projectId);
         return ResponseEntity.noContent().build();
     }
 
-
-
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjectDTO> updateProject(
+            @PathVariable("id") String projectId,
+            @RequestBody @Valid SaveProjectDataDTO saveProjectData
+    ) {
+      Project project = projectService.updateProject(projectId, saveProjectData);
+        return ResponseEntity.ok(ProjectDTO.create(project));
+    }
 }
+
+
+
+
