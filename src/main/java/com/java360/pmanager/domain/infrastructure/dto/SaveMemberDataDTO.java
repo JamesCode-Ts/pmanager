@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class saveMemberDataDTO {
+public class SaveMemberDataDTO {
 
 
     @NotNull(message = "Name cannot be empty")
