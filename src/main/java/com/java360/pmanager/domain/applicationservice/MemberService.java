@@ -1,6 +1,7 @@
 package com.java360.pmanager.domain.applicationservice;
 
 import com.java360.pmanager.domain.entity.Member;
+import com.java360.pmanager.domain.exception.MemberNotFoundExeption;
 import com.java360.pmanager.domain.repository.MemberRepository;
 import com.java360.pmanager.domain.infrastructure.dto.SaveMemberDataDTO;
 import lombok.RequiredArgsConstructor;
@@ -29,4 +30,12 @@ public class MemberService {
         return member;
 
     }
+
+    public Member loadMemberbyId(String memberId){
+        return memberRepository
+                .findByIdAndDeleted(memberId, false)
+                .orElseThrow(() -> new MemberNotFoundExeption(memberId));
+    }
+
+    
 }

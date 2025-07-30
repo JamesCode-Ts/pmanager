@@ -37,6 +37,12 @@ public class MemberRestResource {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<MemberDTO> loadMemberById(@PathVariable("id") String memberId){
+          Member member = memberService.loadMemberbyId(memberId);
+          return ResponseEntity.ok(MemberDTO.create(member));
+
+    }
 
 }
 
