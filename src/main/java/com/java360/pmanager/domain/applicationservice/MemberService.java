@@ -2,6 +2,7 @@ package com.java360.pmanager.domain.applicationservice;
 
 import com.java360.pmanager.domain.entity.Member;
 import com.java360.pmanager.domain.exception.MemberNotFoundExeption;
+import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
 import com.java360.pmanager.domain.repository.MemberRepository;
 import com.java360.pmanager.domain.infrastructure.dto.SaveMemberDataDTO;
 import jakarta.transaction.Transactional;
@@ -42,5 +43,15 @@ public class MemberService {
     public void deletedMember(String memberId){
         Member member = loadMemberbyId(memberId);
         member.setDeleted(true);
+    }
+
+    @Transactional
+    public Member updateMember(String memberId, SaveMemberDataDTO saveMemberData){
+        Member member = loadMemberbyId(memberId);
+
+        member.setName(saveMemberData.getName());
+        member.setEmail(saveMemberData.getEmail());
+
+        return member;
     }
 }

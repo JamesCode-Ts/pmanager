@@ -1,13 +1,9 @@
 package com.java360.pmanager.domain.infrastructure.controller;
 
 import com.java360.pmanager.domain.applicationservice.MemberService;
-import com.java360.pmanager.domain.applicationservice.ProjectService;
 import com.java360.pmanager.domain.entity.Member;
-import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.infrastructure.dto.MemberDTO;
-import com.java360.pmanager.domain.infrastructure.dto.ProjectDTO;
 import com.java360.pmanager.domain.infrastructure.dto.SaveMemberDataDTO;
-import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 import static com.java360.pmanager.domain.infrastructure.controller.RestConstants.PATH_MEMBERS;
-import static com.java360.pmanager.domain.infrastructure.controller.RestConstants.PATH_PROJECTS;
 
 @RestController
 @RequestMapping(PATH_MEMBERS)
@@ -50,6 +45,15 @@ public class MemberRestResource {
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<MemberDTO> updateMember(
+            @PathVariable("id") String memberId,
+            @Valid @RequestBody SaveMemberDataDTO saveMemberData
+    ){
+        Member member = memberService.updateMember(memberId, saveMemberData);
+        return ResponseEntity.ok(MemberDTO.create(member));
+
+    }
 
 }
 
