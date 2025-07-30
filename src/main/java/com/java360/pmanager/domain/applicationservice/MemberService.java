@@ -4,6 +4,7 @@ import com.java360.pmanager.domain.entity.Member;
 import com.java360.pmanager.domain.exception.MemberNotFoundExeption;
 import com.java360.pmanager.domain.repository.MemberRepository;
 import com.java360.pmanager.domain.infrastructure.dto.SaveMemberDataDTO;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,9 @@ public class MemberService {
                 .orElseThrow(() -> new MemberNotFoundExeption(memberId));
     }
 
-    
+    @Transactional
+    public void deletedMember(String memberId){
+        Member member = loadMemberbyId(memberId);
+        member.setDeleted(true);
+    }
 }
