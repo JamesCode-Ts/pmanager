@@ -31,6 +31,6 @@ public class Member {
     private String email;
 
     @Column(name = "deleted", nullable = false)
-    private boolean deleted;
+    private Boolean deleted;
 
 }

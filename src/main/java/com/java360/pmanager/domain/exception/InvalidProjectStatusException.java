@@ -1,4 +1,6 @@
-package com.java360.pmanager.domain.infrastructure.exception;
+package com.java360.pmanager.domain.exception;
+
+import com.java360.pmanager.domain.infrastructure.exception.RequestException;
 
 public class InvalidProjectStatusException  extends RequestException {
 
