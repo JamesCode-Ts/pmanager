@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -32,5 +33,8 @@ public class Member {
 
     @Column(name = "deleted", nullable = false)
     private Boolean deleted;
+
+    @ManyToMany(mappedBy = "members") // mappedBy instructs JPA that the other side is the owner of the relationship
+    private List<Project> projects;
 
 }

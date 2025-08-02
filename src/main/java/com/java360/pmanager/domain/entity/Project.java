@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.Builder;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -38,6 +39,13 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
 
+    @ManyToMany // Defines a many-to-many relationship
+    @JoinTable(
+            name = "project_member", // Join table name
+            joinColumns = @JoinColumn(name = "project_id"), // FK referencing Project (owner)
+            inverseJoinColumns = @JoinColumn(name = "member_id") // FK referencing Member (inverse)
+    )
+    private List<Member> members; // Members linked to this project
 
 }
 
