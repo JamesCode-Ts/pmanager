@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toSet;
 
 @Data
 public class ProjectDTO {
-
+    //data output, is the response
     private final String id;
     private final String name;
     private final String description;
@@ -33,11 +33,11 @@ public class ProjectDTO {
                 project.getFinalDate(),
                 project.getStatus(),
                 Optional
-                        .ofNullable(project.getMembers())
-                        .orElse(List.of())
-                        .stream()
-                        .map(Member::getId)
-                        .collect(toSet())
+                        .ofNullable(project.getMembers()) // avoid NullPointerException
+                        .orElse(List.of())        // if null, use an empty list
+                        .stream()                 // create a Stream of members
+                        .map(Member::getId)       // get only the IDs of each member
+                        .collect(toSet())         // convert to a Set<String>
         );
 
 

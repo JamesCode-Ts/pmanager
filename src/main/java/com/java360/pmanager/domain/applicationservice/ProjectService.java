@@ -1,5 +1,6 @@
 package com.java360.pmanager.domain.applicationservice;
 
+import com.java360.pmanager.domain.entity.Member;
 import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.exception.ProjectNotFoundExeption;
 import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
@@ -12,7 +13,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +27,8 @@ import java.util.Objects;
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
+    private final MemberService memberService;
+
 
     @Transactional
     public Project createProject(SaveProjectDataDTO saveProjectData) {
@@ -38,6 +47,8 @@ public class ProjectService {
                 .build();
 
         projectRepository.save(project);
+
+        addMembersToProject(saveProjectData.getMembersIds(), project);
 
         log.info("Project created: {}", project);
         return project;
@@ -70,7 +81,11 @@ public class ProjectService {
         project.setInitialDate(saveProjectDate.getFinalDate());
         project.setStatus(convertToProjectStatus(saveProjectDate.getStatus()));
 
+        addMembersToProject(saveProjectDate.getMembersIds(), project);
+
+
         return project;
+
 
     }
     private ProjectStatus convertToProjectStatus(String statusStr){
@@ -108,6 +123,20 @@ public class ProjectService {
 
                 // If present, it means a conflicting project was found
                 .isPresent();
+
+    }
+
+
+    private void  addMembersToProject(Set<String> memberIds, Project project){
+
+       List<Member> members = Optional
+               .ofNullable(memberIds)
+               .orElse(Set.of())
+               .stream()
+               .map(memberService::loadMemberbyId)
+               .collect(toList()); // collect(toList()) means to join all the elements processed by the Stream into a list.
+
+        project.setMembers(members);
 
     }
 }

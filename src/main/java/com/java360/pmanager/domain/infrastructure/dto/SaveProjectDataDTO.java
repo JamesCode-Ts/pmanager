@@ -9,10 +9,11 @@ import lombok.Data;
 import lombok.NonNull;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 public class SaveProjectDataDTO {
-
+    //Data entry
     @NotNull(message = "Name cannot be empty")
     @Size(min = 1, max = 80, message = "Invalid name")
     private final String name;
@@ -29,10 +30,11 @@ public class SaveProjectDataDTO {
 
     private final String status;
 
+    private final Set<String> membersIds;
+
     @AssertTrue(message = "Dates are not consistent")
     @SuppressWarnings("unused")
     private boolean isInitialDateBeforeFinalDate(){
-
         return initialDate.isBefore(finalDate);
     }
     // Returns false if initialDate is not before finalDate
