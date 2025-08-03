@@ -18,7 +18,7 @@ public class TaskDTO {
                 task.getId(),
                 task.getTitle(),
                 task.getDescription(),
-                task.getMemberOfDays(),
+                task.getNumberOfDays(),
                 task.getStatus()
 
         );

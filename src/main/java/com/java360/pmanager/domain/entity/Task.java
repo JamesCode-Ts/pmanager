@@ -26,7 +26,7 @@ public class Task {
     private String description;
 
     @Column(name= "member_of_days", nullable = false)
-    private Integer memberOfDays;
+    private Integer numberOfDays;
 
     @Column(name= "status", nullable = false)
     @Enumerated(EnumType.STRING)
