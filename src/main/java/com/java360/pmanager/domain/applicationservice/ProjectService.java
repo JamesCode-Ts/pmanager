@@ -38,13 +38,13 @@ public class ProjectService {
         }
 
         Project project = Project
-                .builder()
+                .builder() // calls the Project class annotated with @Builder
                 .name(saveProjectData.getName())
                 .description(saveProjectData.getDescription())
                 .initialDate(saveProjectData.getInitialDate())
                 .finalDate(saveProjectData.getFinalDate())
                 .status(ProjectStatus.PENDING)
-                .build();
+                .build(); // instantiates the Project, equivalent to using new
 
         projectRepository.save(project);
 
