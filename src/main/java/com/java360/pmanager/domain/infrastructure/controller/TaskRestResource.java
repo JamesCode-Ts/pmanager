@@ -37,6 +37,13 @@ public class TaskRestResource {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskDTO> load(@PathVariable("id") String taskId){
+            Task task = taskService.loadTask(taskId);
+            return ResponseEntity.ok(TaskDTO.create(task));
+
+    }
+
 }
 
 

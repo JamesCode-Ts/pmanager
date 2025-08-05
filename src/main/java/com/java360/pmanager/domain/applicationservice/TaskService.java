@@ -1,6 +1,7 @@
 package com.java360.pmanager.domain.applicationservice;
 
 import com.java360.pmanager.domain.entity.Task;
+import com.java360.pmanager.domain.exception.TaskNotFoundExeption;
 import com.java360.pmanager.domain.infrastructure.dto.SaveTaskDataDTO;
 import com.java360.pmanager.domain.model.TaskStatus;
 import com.java360.pmanager.domain.repository.TaskRepository;
@@ -27,4 +28,11 @@ public class TaskService {
         taskRepository.save(task);
         return task;
     }
+
+    public Task loadTask(String taskId){
+        return taskRepository
+                .findById(taskId)
+                .orElseThrow(() -> new TaskNotFoundExeption(taskId));
+    }
+
 }
