@@ -44,6 +44,13 @@ public class TaskRestResource {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletedTask(@PathVariable("id") String taskId){
+        taskService.deleteTask(taskId);
+        return ResponseEntity.noContent().build();
+
+    }
+
 }
 
 
