@@ -11,6 +11,7 @@ import com.java360.pmanager.domain.infrastructure.dto.TaskDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -38,19 +39,27 @@ public class TaskRestResource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskDTO> load(@PathVariable("id") String taskId){
-            Task task = taskService.loadTask(taskId);
-            return ResponseEntity.ok(TaskDTO.create(task));
+    public ResponseEntity<TaskDTO> load(@PathVariable("id") String taskId) {
+        Task task = taskService.loadTask(taskId);
+        return ResponseEntity.ok(TaskDTO.create(task));
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletedTask(@PathVariable("id") String taskId){
+    public ResponseEntity<Void> deletedTask(@PathVariable("id") String taskId) {
         taskService.deleteTask(taskId);
         return ResponseEntity.noContent().build();
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskDTO> updateTask(
+            @PathVariable("id") String taskId,
+            @RequestBody @Valid SaveTaskDataDTO saveTaskData
+    ) {
+        Task task = taskService.updateTask(taskId, saveTaskData);
+        return ResponseEntity.ok(TaskDTO.create(task));
+    }
 }
 
 
