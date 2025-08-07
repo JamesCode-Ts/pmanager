@@ -37,4 +37,6 @@ public class Member {
     @ManyToMany(mappedBy = "members") // mappedBy instructs JPA that the other side is the owner of the relationship
     private List<Project> projects;
 
+
+
 }
