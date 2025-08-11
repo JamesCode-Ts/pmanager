@@ -48,7 +48,7 @@ public class Project {
     private List<Member> members; // Members linked to this project
 
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", orphanRemoval = true) // delete all task(orphan) assosied project, orphanRemoval = true
     private List<Task> tasks;
 }
 
