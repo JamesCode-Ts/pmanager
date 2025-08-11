@@ -1,5 +1,7 @@
 package com.java360.pmanager.domain.applicationservice;
 
+import com.java360.pmanager.domain.entity.Member;
+import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.entity.Task;
 import com.java360.pmanager.domain.exception.InvalidTaskStatusException;
 import com.java360.pmanager.domain.exception.TaskNotFoundExeption;
@@ -10,20 +12,38 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class TaskService {
 
+    private final ProjectService projectService;
+    private final MemberService memberService;
     private final TaskRepository taskRepository;
+
 
     @Transactional
     public Task createTask(SaveTaskDataDTO saveTaskData){
+
+        Project project = null;
+        if(!Objects.isNull(saveTaskData.getProjectId())){
+            project = projectService.loadProject(saveTaskData.getProjectId());
+        }
+
+        Member member = null;
+        if(!Objects.isNull(saveTaskData.getMemberId())){
+            member = memberService.loadMemberbyId(saveTaskData.getMemberId());
+        }
+
         Task task = Task
                 .builder()
                 .title(saveTaskData.getTitle())
                 .description(saveTaskData.getDescription())
                 .numberOfDays(saveTaskData.getNumberOfDays())
                 .status(TaskStatus.PENDING)
+                .project(project)
+                .assignedMember(member)
                 .build();
 
         taskRepository.save(task);
