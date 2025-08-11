@@ -12,7 +12,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -67,8 +69,25 @@ public class TaskService {
         task.setDescription(saveTaskData.getDescription());
         task.setNumberOfDays(saveTaskData.getNumberOfDays());
         task.setStatus(convertToTaskStatus(saveTaskData.getStatus()));
+        task.setProject(project);
+        task.setAssignedMember(member);
 
         return task;
+    }
+
+    public List<Task> findTasks(
+            String projectId,
+            String memberId,
+            String statusStr,
+            String partialTitle
+    ){
+
+        return taskRepository.find(
+                projectId,
+                memberId,
+                Optional.ofNullable(statusStr).map(this::convertToTaskStatus).orElse(null),
+                partialTitle
+        );
     }
 
    private TaskStatus convertToTaskStatus(String statusStr){
