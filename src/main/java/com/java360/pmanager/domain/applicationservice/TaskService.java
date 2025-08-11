@@ -24,17 +24,9 @@ public class TaskService {
 
 
     @Transactional
-    public Task createTask(SaveTaskDataDTO saveTaskData){
-
-        Project project = null;
-        if(!Objects.isNull(saveTaskData.getProjectId())){
-            project = projectService.loadProject(saveTaskData.getProjectId());
-        }
-
-        Member member = null;
-        if(!Objects.isNull(saveTaskData.getMemberId())){
-            member = memberService.loadMemberbyId(saveTaskData.getMemberId());
-        }
+    public Task createTask(SaveTaskDataDTO saveTaskData) {
+    Project project = getProjectIfPossible(saveTaskData.getProjectId());
+    Member member = getMemberIfPossible(saveTaskData.getMemberId());
 
         Task task = Task
                 .builder()
@@ -50,20 +42,25 @@ public class TaskService {
         return task;
     }
 
-    public Task loadTask(String taskId){
+    public Task loadTask(String taskId) {
         return taskRepository
                 .findById(taskId)
                 .orElseThrow(() -> new TaskNotFoundExeption(taskId));
     }
 
     @Transactional
-    public void deleteTask(String taskId){
+    public void deleteTask(String taskId) {
         Task task = loadTask(taskId);
         taskRepository.delete(task);
     }
 
+
     @Transactional
     public Task updateTask(String taskId, SaveTaskDataDTO saveTaskData){
+
+        Project project = getProjectIfPossible(saveTaskData.getProjectId());
+        Member member = getMemberIfPossible(saveTaskData.getMemberId());
+
         Task task = loadTask(taskId);
 
         task.setTitle(saveTaskData.getTitle());
@@ -82,5 +79,24 @@ public class TaskService {
 
         }
    }
+
+    private Member getMemberIfPossible(String memberId) {
+
+        Member member = null;
+        if (!Objects.isNull(memberId)) {
+            member = memberService.loadMemberbyId(memberId);
+        }
+        return member;
+    }
+
+    private Project getProjectIfPossible(String projectId){
+
+        Project project = null;
+        if(!Objects.isNull(projectId)){
+            project = projectService.loadProject(projectId);
+        }
+        return project;
+    }
+
 
 }
