@@ -11,6 +11,7 @@ import com.java360.pmanager.domain.infrastructure.dto.TaskDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.LifecycleState;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -68,9 +69,10 @@ public class TaskRestResource {
             @RequestParam(value = "projectId", required = false) String projectId,
             @RequestParam(value = "memberId", required = false) String memberId,
             @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "partialTitle", required = false) String partialTitle
+            @RequestParam(value = "partialTitle", required = false) String partialTitle,
+            @RequestParam(value ="page", required = false) Integer page
     ) {
-        List<Task> tasks = taskService.findTasks(projectId, memberId, status, partialTitle);
+        Page<Task> tasks = taskService.findTasks(projectId, memberId, status, partialTitle, page);
         return ResponseEntity.ok(tasks.stream().map(TaskDTO::create).toList());
     }
 }

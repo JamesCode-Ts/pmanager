@@ -10,6 +10,8 @@ import com.java360.pmanager.domain.model.TaskStatus;
 import com.java360.pmanager.domain.repository.TaskRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -75,18 +77,20 @@ public class TaskService {
         return task;
     }
 
-    public List<Task> findTasks(
+    public Page<Task> findTasks(
             String projectId,
             String memberId,
             String statusStr,
-            String partialTitle
+            String partialTitle,
+            Integer page
     ){
 
         return taskRepository.find(
                 projectId,
                 memberId,
                 Optional.ofNullable(statusStr).map(this::convertToTaskStatus).orElse(null),
-                partialTitle
+                partialTitle,
+                PageRequest.of(Optional.ofNullable(page).orElse(0),3)
         );
     }
 
