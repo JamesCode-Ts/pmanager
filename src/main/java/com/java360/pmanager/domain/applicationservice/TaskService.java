@@ -5,6 +5,7 @@ import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.entity.Task;
 import com.java360.pmanager.domain.exception.InvalidTaskStatusException;
 import com.java360.pmanager.domain.exception.TaskNotFoundExeption;
+import com.java360.pmanager.domain.infrastructure.config.AppConfigProperties;
 import com.java360.pmanager.domain.infrastructure.dto.SaveTaskDataDTO;
 import com.java360.pmanager.domain.infrastructure.util.PaginationHelper;
 import com.java360.pmanager.domain.model.TaskStatus;
@@ -20,6 +21,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.java360.pmanager.domain.infrastructure.util.PaginationHelper.createPageable;
+
 @Service
 @RequiredArgsConstructor
 public class TaskService {
@@ -27,6 +30,7 @@ public class TaskService {
     private final ProjectService projectService;
     private final MemberService memberService;
     private final TaskRepository taskRepository;
+    private final AppConfigProperties props;
 
 
     @Transactional
@@ -87,16 +91,14 @@ public class TaskService {
             Integer page,
             String directionStr,
             List<String> properties
-
     ){
-        Sort sort = Sort.by(Sort.Direction.DESC, "title");
 
         return taskRepository.find(
                 projectId,
                 memberId,
                 Optional.ofNullable(statusStr).map(this::convertToTaskStatus).orElse(null),
                 partialTitle,
-                PaginationHelper.createPageable(page, 3,directionStr, properties)
+                createPageable(page, props.getPageSize(), directionStr, properties)
         );
     }
 
