@@ -1,4 +1,4 @@
-package com.java360.pmanager.domain.infrastructure.controller;
+package com.java360.pmanager.infrastructure.controller;
 
 public final class RestConstants {
 

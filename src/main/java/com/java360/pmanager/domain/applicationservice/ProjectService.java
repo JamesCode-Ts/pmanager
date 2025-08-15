@@ -3,7 +3,7 @@ package com.java360.pmanager.domain.applicationservice;
 import com.java360.pmanager.domain.entity.Member;
 import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.exception.ProjectNotFoundExeption;
-import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
+import com.java360.pmanager.infrastructure.dto.SaveProjectDataDTO;
 import com.java360.pmanager.domain.exception.DuplicateProjectException;
 import com.java360.pmanager.domain.exception.InvalidProjectStatusException;
 import com.java360.pmanager.domain.model.ProjectStatus;

@@ -1,4 +1,4 @@
-package com.java360.pmanager.domain.infrastructure.dto;
+package com.java360.pmanager.infrastructure.dto;
 
 import com.java360.pmanager.domain.entity.Member;
 import com.java360.pmanager.domain.entity.Project;

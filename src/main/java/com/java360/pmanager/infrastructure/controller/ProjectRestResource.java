@@ -1,9 +1,9 @@
-package com.java360.pmanager.domain.infrastructure.controller;
+package com.java360.pmanager.infrastructure.controller;
 
 import com.java360.pmanager.domain.applicationservice.ProjectService;
 import com.java360.pmanager.domain.entity.Project;
-import com.java360.pmanager.domain.infrastructure.dto.ProjectDTO;
-import com.java360.pmanager.domain.infrastructure.dto.SaveProjectDataDTO;
+import com.java360.pmanager.infrastructure.dto.ProjectDTO;
+import com.java360.pmanager.infrastructure.dto.SaveProjectDataDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-import static com.java360.pmanager.domain.infrastructure.controller.RestConstants.PATH_PROJECTS;
+import static com.java360.pmanager.infrastructure.controller.RestConstants.PATH_PROJECTS;
 
 @RestController
 @RequestMapping(PATH_PROJECTS)

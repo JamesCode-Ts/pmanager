@@ -1,4 +1,4 @@
-package com.java360.pmanager.domain.infrastructure.util;
+package com.java360.pmanager.infrastructure.util;
 
 import lombok.Getter;
 

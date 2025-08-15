@@ -5,9 +5,9 @@ import com.java360.pmanager.domain.entity.Project;
 import com.java360.pmanager.domain.entity.Task;
 import com.java360.pmanager.domain.exception.InvalidTaskStatusException;
 import com.java360.pmanager.domain.exception.TaskNotFoundExeption;
-import com.java360.pmanager.domain.infrastructure.config.AppConfigProperties;
-import com.java360.pmanager.domain.infrastructure.dto.SaveTaskDataDTO;
-import com.java360.pmanager.domain.infrastructure.util.PaginationHelper;
+import com.java360.pmanager.infrastructure.config.AppConfigProperties;
+import com.java360.pmanager.infrastructure.dto.SaveTaskDataDTO;
+import com.java360.pmanager.infrastructure.util.PaginationHelper;
 import com.java360.pmanager.domain.model.TaskStatus;
 import com.java360.pmanager.domain.repository.TaskRepository;
 import jakarta.transaction.Transactional;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.java360.pmanager.domain.infrastructure.util.PaginationHelper.createPageable;
+import static com.java360.pmanager.infrastructure.util.PaginationHelper.createPageable;
 
 @Service
 @RequiredArgsConstructor
@@ -98,7 +98,7 @@ public class TaskService {
                 memberId,
                 Optional.ofNullable(statusStr).map(this::convertToTaskStatus).orElse(null),
                 partialTitle,
-                createPageable(page, props.getPageSize(), directionStr, properties)
+                createPageable(page,props.getGeneral().getPageSize(), directionStr, properties)
         );
     }
 

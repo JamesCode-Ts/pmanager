@@ -1,4 +1,4 @@
-package com.java360.pmanager.domain.infrastructure.exception;
+package com.java360.pmanager.infrastructure.exception;
 
 import lombok.Getter;
 

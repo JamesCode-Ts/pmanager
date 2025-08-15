@@ -1,9 +1,9 @@
-package com.java360.pmanager.domain.infrastructure.controller;
+package com.java360.pmanager.infrastructure.controller;
 
 import com.java360.pmanager.domain.applicationservice.MemberService;
 import com.java360.pmanager.domain.entity.Member;
-import com.java360.pmanager.domain.infrastructure.dto.MemberDTO;
-import com.java360.pmanager.domain.infrastructure.dto.SaveMemberDataDTO;
+import com.java360.pmanager.infrastructure.dto.MemberDTO;
+import com.java360.pmanager.infrastructure.dto.SaveMemberDataDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
-import static com.java360.pmanager.domain.infrastructure.controller.RestConstants.PATH_MEMBERS;
+import static com.java360.pmanager.infrastructure.controller.RestConstants.PATH_MEMBERS;
 
 @RestController
 @RequestMapping(PATH_MEMBERS)

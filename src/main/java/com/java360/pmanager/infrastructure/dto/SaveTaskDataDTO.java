@@ -1,4 +1,4 @@
-package com.java360.pmanager.domain.infrastructure.dto;
+package com.java360.pmanager.infrastructure.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
