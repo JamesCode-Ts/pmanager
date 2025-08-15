@@ -8,6 +8,8 @@ public final class RestConstants {
 
     public static  final String PATH_TASKS = "/tasks";
 
+    public static  final String PATH_APIKEYS = "/apiKeys";
+
 
     private RestConstants(){
 
