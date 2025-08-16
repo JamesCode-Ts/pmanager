@@ -1,6 +1,6 @@
 ## Project Management System 
 
-Aplicação **RESTful** desenvolvida em **Java 21** com **Spring Boot 3.3.4**, projetada para gerenciar projetos, membros e tarefas de forma organizada, segura e escalável. O sistema segue boas práticas de arquitetura, validação e design, facilitando manutenção e futuras expansões.
+Aplicação **RESTful** desenvolvida em **Java 21** com **Spring Boot**, projetada para gerenciar projetos, membros e tarefas de forma organizada, segura e escalável. O sistema segue boas práticas de arquitetura, validação e design, facilitando manutenção e futuras expansões.
 
 | Modelagem do Sistema | Modelagem do Banco de Dados |
 |---------------------|----------------------------|
