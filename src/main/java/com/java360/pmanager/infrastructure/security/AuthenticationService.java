@@ -1,5 +1,8 @@
 package com.java360.pmanager.infrastructure.security;
 
+import com.java360.pmanager.domain.applicationservice.ApiKeyService;
+import com.java360.pmanager.domain.exception.ApiKeyExpiredException;
+import com.java360.pmanager.domain.exception.ApiKeyNotFoundException;
 import com.java360.pmanager.infrastructure.config.AppConfigProperties;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -14,15 +17,19 @@ import java.util.Objects;
 public class AuthenticationService {
 
     private final AppConfigProperties props;
+    private final ApiKeyService apiKeyService;
 
     private final static String AUTH_TOKEN_HEADER_NAME = "x-api-key";
 
     public Authentication getAuthentication(HttpServletRequest request){
         String apiKey = request.getHeader(AUTH_TOKEN_HEADER_NAME);
 
-        if(!Objects.equals(apiKey, props.getSecurity().getApiKey())){
-            throw new BadCredentialsException("Invalid API Key: " + apiKey);
-
+        if(!Objects.equals(apiKey, props.getSecurity().getMasterApiKey())){
+            try {
+                apiKeyService.validateApiKey(apiKey);
+            } catch (ApiKeyNotFoundException | ApiKeyExpiredException e) {
+                throw new BadCredentialsException("API key is not valid: " + apiKey, e);
+            }
         }
 
         return new ApiKeyAuthenticationToken(apiKey);

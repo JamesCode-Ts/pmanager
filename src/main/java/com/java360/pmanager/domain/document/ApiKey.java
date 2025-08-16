@@ -27,4 +27,8 @@ public class ApiKey {
     @CreatedDate
     private Instant createdWhen;
 
+    public boolean isExpired(Instant now){
+        return now.isAfter(expiresWhen);
+    }
+
 }

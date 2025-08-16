@@ -36,4 +36,9 @@ public class ApiKeyRestResource {
                 .body(ApiKeyDTO.create(apiKey));
 
     }
+    @PutMapping("{id}/revoke")
+    public ResponseEntity<Void> revokeApiKey(@PathVariable("id") String id){
+        apiKeyService.revokeApiKey(id);
+        return ResponseEntity.noContent().build();
+    }
 }
