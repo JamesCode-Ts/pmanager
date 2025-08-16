@@ -43,8 +43,8 @@ Aplicação **RESTful** desenvolvida em **Java 21** com **Spring Boot**, projeta
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/project-management-system.git
-cd project-management-system
+git clone git@github.com:JamesCode-Ts/pmanager.git
+cd pmanager
 ```
 
 
